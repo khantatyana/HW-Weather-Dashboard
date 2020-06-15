@@ -34,7 +34,7 @@ var userInput = ""
 const searchElement = $("#search-button");
 searchElement.click( function () {
     userInput = $("#search-value").val();
-    var queryURL = "http://api.weatherapi.com/v1/forecast.json?key=" + window.API_Key + "&days=7" + "&q=" + userInput;
+    var queryURL = "https://api.weatherapi.com/v1/forecast.json?key=" + window.API_Key + "&days=7" + "&q=" + userInput;
     $.ajax({
         url: queryURL,
         method: "GET"
