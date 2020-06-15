@@ -32,16 +32,30 @@ var userInput = ""
 // })
 
 const searchElement = $("#search-button");
-searchElement.click( function () {
+searchElement.click( function ajaxCall() {
+
     userInput = $("#search-value").val();
     var queryURL = "https://api.weatherapi.com/v1/forecast.json?key=" + window.API_Key + "&days=7" + "&q=" + userInput;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(data) {
-        $("#forecast").empty();
+
+        // clear forecast body
+        clear();
+
         console.log(data);
-        $("#location").text(data.location.name + ", " + data.location.country);
+        var location = $("#location");
+        var listHistory = $(".list-group");
+        if (location) {
+            var list = $("<li>");
+            list.addClass("list-group");
+            list.text(data.location.name);
+            listHistory.prepend(list);
+        }
+
+        // putting data from AJAX to the forecast body
+        location.text(data.location.name + ", " + data.location.country);
         var temp = $("<p>");
         temp.attr("id", "humid");
         temp.text("Temperature: " + data.current.temp_c + " C / " + data.current.temp_f + " F");
@@ -59,6 +73,12 @@ searchElement.click( function () {
         uv.text("UV Index: " + data.current.uv);
         $("#forecast").append(uv);
 
+        // 3-5 days forecast
+        var forecastRowTitle = $("<div>");
+        forecastRowTitle.addClass("row forecast").css({"font-size": "30px", "color": "blue", "padding": "20px"});
+        forecastRowTitle.text(data.forecast.forecastday.length + "-day Forecast:");
+        $("#fiveDayForecast").prepend(forecastRowTitle);
+
         for ( var i = 0; i < data.forecast.forecastday.length; i ++) {
             var forecastCol = $("<div>");
             forecastCol.addClass("col-md-" + data.forecast.forecastday.length);
@@ -71,10 +91,18 @@ searchElement.click( function () {
             forecastCol.append(forecastP, forecastTC, forecastHum);
             $("#forecastRow").append(forecastCol);
         }
-        
-
     })
-    
-    
 });
 
+function clear() {
+    $("#forecast").empty();
+    $("#forecastRow").empty();
+    $(".forecast").empty();
+
+};
+
+$(".list-group").on("click", function () {
+    // userInput = $("button").val();
+    alert("HI")
+    
+})
