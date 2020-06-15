@@ -1,3 +1,4 @@
+
 #currentDay {
     text-align: center;
     color: blue;
@@ -5,7 +6,7 @@
     font-size: 30px;
 }
 .col-md-3 {
-    border: 1px solid;
+    border: 1px dotted ;
     background-color: rgb(44, 41, 231);
     padding: 5px;
     margin: 20px;
@@ -13,8 +14,20 @@
     position: relative;
 }
 #today {
-    border: dotted;
+    border-bottom: dotted;
 }
 .list-group {
     padding-left: 10px;
+    color: rgb(76, 12, 122);
+    font-weight: bold;
+    font-size: large;
+
+}
+li {
+    border: 1px dotted;
+    height: 40px;
+    padding-left: 10px;
+}
+#fiveDayForecast {
+    background-image: radial-gradient(#fff, #ece8e8);
 }
