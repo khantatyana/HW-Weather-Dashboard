@@ -31,3 +31,7 @@ li {
 #fiveDayForecast {
     background-image: radial-gradient(#fff, #ece8e8);
 }
+#uvText {
+    background-color: red;
+    color: white;
+}

@@ -56,6 +56,8 @@ $( document ).ready(function() {
             // clear forecast body
             clear();
 
+            // list of history
+
             console.log(data);
             var location = $("#location");
             var listHistory = $(".list-group");
@@ -66,8 +68,6 @@ $( document ).ready(function() {
                 list.text(data.location.name);
                 listHistory.prepend(list);
             }
-            // $("#p7menubar > li:nth-child(9) > .trigger").attr("id","MyNewID");
-
 
             // putting data from AJAX to the forecast body
             location.text(data.location.name + ", " + data.location.country);
@@ -85,8 +85,11 @@ $( document ).ready(function() {
             $("#forecast").append(wind);
             var uv = $("<p>");
             uv.attr("id", "uv");
-            uv.text("UV Index: " + data.current.uv);
+            // uv.text("UV Index: " + data.current.uv);
+            // $("#forecast").append(uv);
+            uv.text("UV Index: ");
             $("#forecast").append(uv);
+            var uvText = $("<span id='uvText'>").text(data.current.uv).appendTo(uv);
 
             // 3-5 days forecast
             var forecastRowTitle = $("<div>");
