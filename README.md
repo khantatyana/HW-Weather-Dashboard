@@ -1,5 +1,7 @@
 # 06 Server-Side APIs: Weather Dashboard
 
+https://khantatyana.github.io/HW-Weather-Dashboard/
+
 ![weather dashboard demo](./Assets/Screen-Shot.png)
 
 
